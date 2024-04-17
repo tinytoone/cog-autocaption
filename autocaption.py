@@ -34,8 +34,8 @@ def create_audio(videofilename):
     return audiofilename
 
 
-def transcribe_audio(whisper_model, audiofilename):
-    segments, info = whisper_model.transcribe(audiofilename, word_timestamps=True)
+def transcribe_audio(whisper_model, audiofilename, language_code):
+    segments, info = whisper_model.transcribe(audiofilename, language=language_code, word_timestamps=True)
 
     segments = list(segments)  # The transcription will actually run here.
 
