@@ -43,6 +43,7 @@ class Predictor(BasePredictor):
             default="bottom75",
         ),
         color: str = Input(description="Caption color", default="white"),
+        language_code: str = Input(description="Language code", default="en"),
         highlight_color: str = Input(description="Highlight color", default="yellow"),
         fontsize: float = Input(
             description="Font size. 7.0 is good for videos, 4.0 is good for reels",
@@ -93,7 +94,7 @@ class Predictor(BasePredictor):
                 wordlevel_info = json.loads(f.read())
         else:
             audiofilename = autocaption.create_audio(videofilename)
-            wordlevel_info = autocaption.transcribe_audio(self.model, audiofilename)
+            wordlevel_info = autocaption.transcribe_audio(self.model, audiofilename, language_code)
         outputs = []
         if output_video:
             if right_to_left:
